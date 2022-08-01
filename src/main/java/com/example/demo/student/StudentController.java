@@ -3,6 +3,7 @@ package com.example.demo.student;
 import java.time.LocalDate;
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -10,14 +11,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path="api/v1/student")
 public class StudentController {
 
+    @Autowired
+    StudentService studentService;
+
+
+
 
     @GetMapping
 	public  List<Student> getStudents(){
-		return List.of(new Student(1L,"mariam","mariam@gmail.com",LocalDate.now(),22));
+		
+        return studentService.getStudents();
 
 	}
 
-    
+
 
     
 }
