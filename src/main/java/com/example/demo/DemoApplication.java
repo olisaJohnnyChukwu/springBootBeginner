@@ -20,10 +20,6 @@ public class DemoApplication {
 	}
 
 
-	@GetMapping
-	public  List<Student> hello(){
-		return List.of(new Student(1L,"mariam","mariam@gmail.com",LocalDate.now(),22));
-
-	}
+	
 
 }
