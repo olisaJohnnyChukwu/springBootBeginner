@@ -3,6 +3,10 @@ package com.example.demo.student;
 import java.time.*;
 import java.util.*;
 
+
+import org.springframework.stereotype.Service;
+
+@Service
 public class StudentService {
 
     public List<Student> getStudents() {
