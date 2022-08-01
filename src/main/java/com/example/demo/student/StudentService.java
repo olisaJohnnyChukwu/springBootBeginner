@@ -3,11 +3,15 @@ package com.example.demo.student;
 import java.time.*;
 import java.util.*;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class StudentService {
+
+
+    @Autowired
+    StudentRepository studentRepository;
 
     public List<Student> getStudents() {
 
