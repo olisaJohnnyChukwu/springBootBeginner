@@ -5,6 +5,7 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class StudentService {
@@ -15,7 +16,23 @@ public class StudentService {
 
     public List<Student> getStudents() {
 
-        return List.of(new Student(1L,"mariam","mariam@gmail.com",LocalDate.now(),22));
+        return studentRepository.findAll();
     }
+
+    public void addNewStudent(@RequestBody Student student) {
+
+        Optional<Student> studentOptonal=studentRepository.findStudentByEmail(student.getEmail());
+
+        if(studentOptonal.isPresent()){
+            throw new IllegalStateException("email taken");
+        }
+
+        
+        studentRepository.save(student);
+    }
+
+
+
+    
     
 }
