@@ -26,11 +26,10 @@ public class StudentController {
 
 
     @PostMapping
-    public void registerNewStudent(Student student){
-
-        
+    public void registerNewStudent(@RequestBody Student student){
         studentService.addNewStudent(student);
     }
+    
 
     
 }

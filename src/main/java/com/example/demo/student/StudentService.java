@@ -19,16 +19,17 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public void addNewStudent(@RequestBody Student student) {
+    public void addNewStudent( Student student) {
 
         Optional<Student> studentOptonal=studentRepository.findStudentByEmail(student.getEmail());
-
+        System.out.println(student.getEmail());
         if(studentOptonal.isPresent()){
+            
             throw new IllegalStateException("email taken");
+        }else{
+            studentRepository.save(student);
         }
-
         
-        studentRepository.save(student);
     }
 
 
