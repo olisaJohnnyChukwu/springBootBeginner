@@ -8,6 +8,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.address.Address;
+import com.example.demo.address.AddressRepository;
+
 
 @Service
 public class StudentService {
@@ -15,6 +18,9 @@ public class StudentService {
 
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+    AddressRepository addressRepository;
 
     public List<Student> getStudents() {
 
@@ -69,6 +75,21 @@ public class StudentService {
 
 
 
+    }
+
+    public Address getAddress(Long id){
+        
+        Student student=studentRepository
+        .findById(id).orElseThrow(
+            ()->{
+                throw new IllegalStateException("User not found");
+            }
+        );
+
+        Address address = student.getAddress();
+
+        return address;
+        
     }
 
 

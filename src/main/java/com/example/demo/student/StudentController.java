@@ -6,6 +6,8 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.address.Address;
+
 
 @RestController
 @RequestMapping(path="api/v1/student")
@@ -47,6 +49,13 @@ public class StudentController {
         
     }
 
-    
+
+
+    @GetMapping(path="address/{studentId}")
+	public  Address findAddress(@PathVariable("studentId") Long id){
+		
+        return studentService.getAddress(id);
+
+	}
     
 }

@@ -2,12 +2,17 @@ package com.example.demo.student;
 import java.time.LocalDate;
 import java.time.Period;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.example.demo.address.Address;
 
 import lombok.*;
 
@@ -27,8 +32,9 @@ public class Student {
     @Transient
     private Integer age;
 
-    
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id",referencedColumnName = "id")
+    private Address address;
     
 
 
