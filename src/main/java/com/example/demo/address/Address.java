@@ -5,6 +5,8 @@ import javax.persistence.*;
 
 
 import com.example.demo.student.Student;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.*;
 import lombok.ToString.Exclude;
@@ -27,6 +29,7 @@ public class Address {
 
     @Exclude
     @OneToOne(mappedBy = "address")
+    @JsonIgnore
     private Student student;
 
     public Address(Integer number, String street) {

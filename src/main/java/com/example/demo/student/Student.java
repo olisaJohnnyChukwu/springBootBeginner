@@ -8,11 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.example.demo.address.Address;
+import com.example.demo.course.Course;
 
 import lombok.*;
 
@@ -22,6 +24,7 @@ import lombok.*;
 @Setter
 @Entity
 @Table
+@ToString
 public class Student {
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,8 +39,15 @@ public class Student {
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     private Address address;
     
-
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name="student_course",
+        joinColumns = {
+            @JoinColumn(name="student_id",referencedColumnName = "id"),
+           },inverseJoinColumns = {
+            @JoinColumn(name="course_id",referencedColumnName = "id")
+           }
+    )
+    private Course course;
     
     public Student(String name, String email,LocalDate dob) {
         this.name = name;
@@ -46,6 +56,15 @@ public class Student {
         this.age = Period.between(this.dob, LocalDate.now()).getYears();
     }
 
+
+
+    public Student(String name, String email,LocalDate dob,Address address) {
+        this.name = name;
+        this.email=email;
+        this.dob = dob;
+        this.address=address;
+        this.age = Period.between(this.dob, LocalDate.now()).getYears();
+    }
 
     
 

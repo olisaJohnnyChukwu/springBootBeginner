@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.address.Address;
 import com.example.demo.address.AddressRepository;
+import com.example.demo.course.Course;
 
 
 @Service
@@ -87,9 +88,25 @@ public class StudentService {
         );
 
         Address address = student.getAddress();
-
+        
+        
         return address;
         
+    }
+
+    public Course getCourse(Long id) {
+
+        Student student=studentRepository
+        .findById(id).orElseThrow(
+            ()->{
+                throw new IllegalStateException("User not found");
+            }
+        );
+        Course course =student.getCourse();
+
+       
+
+        return course;  
     }
 
 

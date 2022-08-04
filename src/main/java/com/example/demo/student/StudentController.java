@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.address.Address;
+import com.example.demo.course.Course;
 
 
 @RestController
@@ -55,7 +56,16 @@ public class StudentController {
 	public  Address findAddress(@PathVariable("studentId") Long id){
 		
         return studentService.getAddress(id);
+       
 
 	}
+
+
+    @GetMapping(path = "course/{studentId}")
+    public Course findCourse(@PathVariable("studentId") Long id){
+
+        return studentService.getCourse(id);
+
+    }
     
 }
